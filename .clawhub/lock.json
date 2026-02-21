@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "skills": {
+    "tavily-search": {
+      "version": "1.0.0",
+      "installedAt": 1771674935293
+    },
+    "self-improving": {
+      "version": "1.1.0",
+      "installedAt": 1771681297408
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1771681484570
+    },
+    "nano-banana-pro": {
+      "version": "1.0.1",
+      "installedAt": 1771682327181
+    }
+  }
+}
