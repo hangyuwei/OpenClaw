@@ -282,31 +282,47 @@ npx skills add jimliu/baoyu-skills
    - 让 Claude Code 使用任意模型
    - 支持免费模型（OpenRouter、Gemini、DeepSeek）
    - 多模型智能路由
-   - 成本优化策略
+   - 成本优化策略（$0 vs $20/月）
    - **文档**：`Obsidian/OpenClaw/Claude-Code-Router-CCR完全指南.md`（12.5KB）
 
 2. **AI Podcast 自动化系统**（重要）
    - 监控 13 个 AI YouTube 博主
-   - 自动获取字幕 + AI 总结
+   - 自动获取字幕 + AI 总结（Gemini Pro）
    - TTS 语音合成（Edge TTS）
    - Telegram 自动推送
    - 完全免费（$0/月）
-   - **代码**：`ai-podcast/`（1997 行）
+   - **代码**：`ai-podcast/`（1997 行，13 个文件）
    - **文档**：`Obsidian/项目/AI播客系统快速开始.md`（4.4KB）
 
-3. **GitHub 视频总结项目**
+3. **AI Video Summarizer**（重要）
+   - GitHub 项目（Stars: 91）
+   - YouTube 视频自动总结 + 时间戳
+   - Web 界面（Streamlit）
+   - 支持 Gemini（免费）和 ChatGPT
+   - **位置**：`AI-Video-Summarizer/`（已安装 46 个依赖）
+   - **文档**：`Obsidian/项目/AI-Video-Summarizer-实现报告.md`（3.7KB）
+
+4. **Claude Code Agent Team**（高优先级）⭐⭐⭐⭐⭐
+   - 多 Agent 协作系统（并行 + 相互通信）
+   - 与 Subagents 的区别：真正的协作而非简单并行
+   - 最佳场景：研究/开发/调试/跨层协调/辩论
+   - 自我学习系统设计
+   - **状态**：方案设计完成，待实现
+   - **文档**：`Obsidian/项目/Claude-Code-Agent-Team-实现方案.md`（16.4KB）
+
+5. **GitHub 视频总结项目清单**
    - 10+ 开源项目清单
    - 技术方案对比
    - 快速开始指南
    - **文档**：`Obsidian/工具/GitHub视频总结开源项目清单.md`（9.5KB）
 
-4. **AI YouTube 博主清单**
+6. **AI YouTube 博主清单**
    - 30+ 博主（英文 20+，中文 6+）
-   - 分级学习路径
+   - 分级学习路径（初/中/高）
    - 每周观看计划
    - **文档**：`Obsidian/AI博主关注清单.md`（5.5KB）
 
-2. **2024 vs 2026 AI 数据验证**（重要）
+7. **2024 vs 2026 AI 数据验证**（重要）
    - 发现 2024 预测严重低估（5 倍差距）
    - 实际 AI 算力市场：$2.5 万亿（非 500 亿）
    - AI 基础设施投资：$7000 亿（5 大巨头）
