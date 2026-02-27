@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Andrej Karpathy",
+    "channel_id": "UC8z8udq8Vk4S6Q8v2KhPMhg",
+    "category": "deep_learning",
+    "priority": 5,
+    "enabled": true
+  },
+  {
+    "name": "Lex Fridman Podcast",
+    "channel_id": "UCSHZKyawb77ixDdsGog4iWA",
+    "category": "interview",
+    "priority": 5,
+    "enabled": true
+  },
+  {
+    "name": "Matthew Berman",
+    "channel_id": "UC3S6YRxg1H8q2B1N8X4S8MQ",
+    "category": "review",
+    "priority": 5,
+    "enabled": true
+  },
+  {
+    "name": "Yannic Kilcher",
+    "channel_id": "UCZhU_K4r3lUoQc_rvBppUKA",
+    "category": "research",
+    "priority": 5,
+    "enabled": true
+  },
+  {
+    "name": "Tech With Tim",
+    "channel_id": "UC4JX40jDee_tINbkjycV4Sg",
+    "category": "tutorial",
+    "priority": 4,
+    "enabled": true
+  },
+  {
+    "name": "Cole Medin",
+    "channel_id": "UCWesRoth",
+    "category": "tutorial",
+    "priority": 4,
+    "enabled": true
+  },
+  {
+    "name": "2 Minutes Papers",
+    "channel_id": "UCbfYPyITQ-7l4upoX8nvctg",
+    "category": "news",
+    "priority": 4,
+    "enabled": true
+  },
+  {
+    "name": "Nicholas Renotte",
+    "channel_id": "UCtXu8FKbyWa8vFrVz2YGvzQ",
+    "category": "project",
+    "priority": 4,
+    "enabled": true
+  },
+  {
+    "name": "StatQuest with Josh Starmer",
+    "channel_id": "UCtYLUTtgS3k1Fg4y5tAhLbw",
+    "category": "tutorial",
+    "priority": 4,
+    "enabled": true
+  },
+  {
+    "name": "Matt Wolfe",
+    "channel_id": "UCmPCVYVYDQLVL5mRw0Rm_gw",
+    "category": "news",
+    "priority": 4,
+    "enabled": true
+  },
+  {
+    "name": "安格视界",
+    "channel_id": "UC3S6YRxg1H8q2B1N8X4S8MQ",
+    "category": "tutorial",
+    "priority": 5,
+    "enabled": true,
+    "language": "zh-CN"
+  },
+  {
+    "name": "硅谷101",
+    "channel_id": "UCj5Uw5sQo8FmA1mVv9TqPmA",
+    "category": "news",
+    "priority": 5,
+    "enabled": true,
+    "language": "zh-CN"
+  },
+  {
+    "name": "小布记忆",
+    "channel_id": "UC8z8udq8Vk4S6Q8v2KhPMhg",
+    "category": "tutorial",
+    "priority": 5,
+    "enabled": true,
+    "language": "zh-CN"
+  }
+]

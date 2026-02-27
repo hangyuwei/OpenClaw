@@ -1,0 +1,26 @@
+{
+  "api_keys": {
+    "youtube_api_key": "YOUR_YOUTUBE_API_KEY",
+    "gemini_api_key": "YOUR_GEMINI_API_KEY",
+    "telegram_bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+    "telegram_chat_id": "YOUR_CHAT_ID"
+  },
+  "podcast": {
+    "language": "zh-CN",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "duration_minutes": 10,
+    "max_videos_per_day": 5,
+    "output_dir": "audio",
+    "background_music": "data/background.mp3"
+  },
+  "schedule": {
+    "check_interval_hours": 2,
+    "generate_time": "06:00",
+    "send_time": "07:00"
+  },
+  "filters": {
+    "min_video_duration_seconds": 300,
+    "min_views": 1000,
+    "keywords": ["AI", "machine learning", "GPT", "LLM", "Claude", "Gemini", "deep learning", "neural network"]
+  }
+}

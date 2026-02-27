@@ -1,0 +1,27 @@
+# AI Podcast 自动化系统依赖
+
+# YouTube API
+google-api-python-client>=2.100.0
+youtube-transcript-api>=0.6.3
+
+# AI 模型
+google-generativeai>=0.3.0
+
+# TTS
+edge-tts>=6.1.0
+
+# 音频处理
+pydub>=0.25.1
+
+# Telegram
+python-telegram-bot>=20.0
+
+# 数据处理
+requests>=2.31.0
+python-dateutil>=2.8.2
+
+# 数据库
+sqlite3
+
+# 日志
+colorlog>=6.7.0
