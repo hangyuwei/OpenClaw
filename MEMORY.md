@@ -278,7 +278,14 @@ npx skills add jimliu/baoyu-skills
 
 **最新学习：2026-02-27**
 
-1. **2024 vs 2026 AI 数据验证**（重要）
+1. **Claude Code Router (CCR)**（重要）
+   - 让 Claude Code 使用任意模型
+   - 支持免费模型（OpenRouter、Gemini、DeepSeek）
+   - 多模型智能路由
+   - 成本优化策略
+   - **文档**：`Obsidian/OpenClaw/Claude-Code-Router-CCR完全指南.md`（12.5KB）
+
+2. **2024 vs 2026 AI 数据验证**（重要）
    - 发现 2024 预测严重低估（5 倍差距）
    - 实际 AI 算力市场：$2.5 万亿（非 500 亿）
    - AI 基础设施投资：$7000 亿（5 大巨头）
