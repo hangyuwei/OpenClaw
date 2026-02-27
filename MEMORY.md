@@ -285,6 +285,27 @@ npx skills add jimliu/baoyu-skills
    - 成本优化策略
    - **文档**：`Obsidian/OpenClaw/Claude-Code-Router-CCR完全指南.md`（12.5KB）
 
+2. **AI Podcast 自动化系统**（重要）
+   - 监控 13 个 AI YouTube 博主
+   - 自动获取字幕 + AI 总结
+   - TTS 语音合成（Edge TTS）
+   - Telegram 自动推送
+   - 完全免费（$0/月）
+   - **代码**：`ai-podcast/`（1997 行）
+   - **文档**：`Obsidian/项目/AI播客系统快速开始.md`（4.4KB）
+
+3. **GitHub 视频总结项目**
+   - 10+ 开源项目清单
+   - 技术方案对比
+   - 快速开始指南
+   - **文档**：`Obsidian/工具/GitHub视频总结开源项目清单.md`（9.5KB）
+
+4. **AI YouTube 博主清单**
+   - 30+ 博主（英文 20+，中文 6+）
+   - 分级学习路径
+   - 每周观看计划
+   - **文档**：`Obsidian/AI博主关注清单.md`（5.5KB）
+
 2. **2024 vs 2026 AI 数据验证**（重要）
    - 发现 2024 预测严重低估（5 倍差距）
    - 实际 AI 算力市场：$2.5 万亿（非 500 亿）
