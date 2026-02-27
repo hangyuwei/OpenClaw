@@ -8,11 +8,16 @@
 
 | 检查频率 | 任务 | 说明 |
 |---------|------|------|
-| 每小时 | 系统健康检查 | 自动发现并修复宕机服务 |
+| 每 10 分钟 | 自我健康监控 | 内存/负载/磁盘/进程监控 |
+| 每天 4:00 | Obsidian 自动整理 | 去重/建立链接/生成报告 |
+| 每 30 分钟 | Tamara 运营监控 | 系统状态检查 |
 | 每天 9:00 | GitHub 监控 | 发现新 Issues 并创建任务 |
-| 每 6 小时 | 技术趋势学习 | 学习 AI/ML/Agent 最新进展 |
-| 每 5 分钟 | Obsidian 同步 | 双向同步笔记 |
-| 每 15 分钟 | EvoMap 心跳 | 保持节点在线 |
+| 每 2 小时 | 深度学习 | AI 趋势 + 技术巨头监控 |
+| 每 5 分钟 | Obsidian 同步 | Git 自动提交推送 |
+| 每天 7:00 | AI 学习资源监控 | 智源社区/机器之心等 |
+| 每天 9:00 | AI 视频监控 | 成本分析 + ROI 计算 |
+| 每天 9:00 | AI 健康区块链监控 | 行业动态追踪 |
+| 每天 9:00 | AI 大健康生态监控 | 老龄化 + AI 医疗 |
 
 **工作流程：**
 ```
@@ -20,14 +25,249 @@
 ```
 
 **脚本位置：**
-- `~/.openclaw/workspace/scripts/health-check.sh`
-- `~/.openclaw/workspace/scripts/github-monitor.sh`
-- `~/.openclaw/workspace/scripts/tech-trends.sh`
+- `~/.openclaw/workspace/scripts/health-check-advanced.sh` - 自我监控（每 10 分钟）
+- `~/.openclaw/workspace/scripts/quick-check.sh` - 快速自检（大操作前）
+- `~/.openclaw/workspace/scripts/obsidian-refine.sh` - Obsidian 整理（每天 4:00）
+- `~/.openclaw/workspace/scripts/ai-learning-monitor.sh` - AI 学习资源（每天 7:00）
+- `~/.openclaw/workspace/scripts/ai-video-monitor.sh` - AI 视频（每天 9:00）
+- `~/.openclaw/workspace/scripts/ai-health-blockchain-monitor.sh` - AI 健康区块链（每天 9:00）
+- `~/.openclaw/workspace/scripts/ai-health-ecosystem-monitor.sh` - AI 大健康（每天 9:00）
+- `~/.openclaw/workspace/ai-agents/tamara-operations.sh` - Tamara 运营（每 30 分钟）
+- `~/.openclaw/workspace/ai-agents/analyst-competitor.sh` - 竞品分析（每天 8:00）
+- `~/.openclaw/workspace/ai-agents/learner-trends.sh` - 深度学习（每 2 小时）
 
 **日志位置：**
-- `/tmp/health-check.log`
-- `/tmp/github-monitor.log`
-- `/tmp/tech-trends.log`
+- `/tmp/openclaw-protection.log` - 自我监控日志
+- `/tmp/openclaw-health-report.txt` - 健康报告
+- `/tmp/openclaw-alert.txt` - 警告信息
+- `/tmp/obsidian-refine.log` - Obsidian 整理日志
+- `/tmp/obsidian-sync.log` - Git 同步日志
+- `/tmp/tamara-operations.log` - Tamara 运营日志
+- `/tmp/learner.log` - 学习系统日志
+
+---
+
+### 🛡️ 自我监控与保护机制（2026-02-27 新增）
+
+**创建原因**：2026-02-27 晚上卡死，用户使用 Codex 修复
+
+**核心功能**：
+1. **实时监控**（每 10 分钟）
+   - 内存使用（警告：200MB，危险：100MB）
+   - 系统负载（警告：1.0，危险：2.0）
+   - 磁盘空间（警告：10GB，危险：5GB）
+   - Git 锁文件（自动清理）
+   - 僵尸进程（监控）
+   - OpenClaw 进程内存
+
+2. **快速自检**（大操作前）
+   - 内存、负载、磁盘检查
+   - 锁文件检测
+   - 彩色输出
+
+3. **危险信号识别**
+   - 可用内存 < 100MB：立即停止
+   - Swap 使用 > 1GB：警告
+   - 同一操作失败 3 次：停止重试
+   - 单个工具调用 > 60 秒：超时
+
+4. **渐进式降级**
+   - 轻度不足（< 300MB）：拒绝大操作
+   - 中度不足（< 200MB）：暂停非关键功能
+   - 严重不足（< 100MB）：紧急通知用户
+
+**文档位置**：
+- `Obsidian/故障排查/自我监控与保护机制.md`（5.2KB）
+- `Obsidian/故障排查/浏览器工具故障排查-20260227.md`（4.2KB）
+- `Obsidian/故障排查/AI卡死故障-20260227.md`（2.7KB）
+
+**脚本位置**：
+- `~/.openclaw/workspace/scripts/health-check-advanced.sh`（3.6KB）
+- `~/.openclaw/workspace/scripts/quick-check.sh`（2.4KB）
+
+**Cron 配置**：
+```bash
+*/10 * * * * health-check-advanced.sh
+```
+
+**关键教训**：
+- AI 无法感知自己卡死
+- 需要外部监控和干预
+- 预防胜于治疗
+- 避免重复失败操作
+
+---
+
+### 🌅 Obsidian 每日自动整理系统（2026-02-27 新增）
+
+**运行时间**：每天凌晨 4:00（北京时间）
+
+**核心功能**：
+1. **检测重复内容**
+   - 识别相似文件名
+   - 发现可能重复的笔记
+   - 提供合并建议
+
+2. **分析文件分布**
+   - 统计文件数量和大小
+   - 识别大文件（> 50KB）
+   - 统计小文件（< 1KB）
+
+3. **提取关键主题**
+   - 统计标签使用频率（前 20）
+   - 识别热门主题
+   - 分析关键词
+
+4. **检查孤立文件**
+   - 找出无入链的笔记
+   - 建议建立连接
+   - 提高可发现性
+
+5. **智能链接建议**
+   - 基于文件名相似性
+   - 基于标签关联
+   - 提供具体建议
+
+6. **清理临时文件**
+   - 删除空文件
+   - 清理备份文件
+   - 节省空间
+
+**每日报告**：
+- 位置：`obsidian-vault/自动整理/日报-YYYY-MM-DD.md`
+- 内容：文件统计、重复内容、关键主题、孤立文件、链接建议、优化建议
+
+**脚本位置**：
+- `~/.openclaw/workspace/scripts/obsidian-refine.sh`（6.1KB）
+
+**文档位置**：
+- `Obsidian/系统设计/Obsidian每日自动整理系统.md`（4.3KB）
+
+**Cron 配置**：
+```bash
+0 4 * * * obsidian-refine.sh
+```
+
+**预期效果**：
+- 1 周后：发现所有重复、识别孤立笔记
+- 1 月后：合并重复、建立完整链接网络
+- 1 季度后：知识图谱可视化、智能推荐
+
+---
+
+### 🎨 Baoyu Skills 集成（2026-02-27 新增）
+
+**安装时间**：2026-02-27
+
+**已安装技能**：16 个专业工具
+
+**内容生成（8 个）**：
+- baoyu-xhs-images - 小红书图文生成 ⭐⭐⭐⭐⭐
+- baoyu-infographic - 专业信息图表 ⭐⭐⭐⭐⭐
+- baoyu-cover-image - 封面图生成
+- baoyu-slide-deck - 幻灯片制作
+- baoyu-comic - 漫画生成
+- baoyu-article-illustrator - 文章插图
+- baoyu-post-to-x - 发布到 X
+- baoyu-post-to-wechat - 发布到微信
+
+**AI 生成（2 个）**：
+- baoyu-image-gen - 图像生成后端
+- baoyu-danger-gemini-web - Gemini 集成
+
+**实用工具（5 个）**：
+- baoyu-url-to-markdown - URL 转 Markdown
+- baoyu-danger-x-to-markdown - X 转 Markdown
+- baoyu-compress-image - 图片压缩
+- baoyu-format-markdown - Markdown 格式化
+- baoyu-markdown-to-html - Markdown 转 HTML
+
+**核心优势**：
+- 20 种布局（journey-path, scale-balance, funnel 等）
+- 17 种风格（technical-schematic, chalkboard, corporate-memphis 等）
+- 自动推荐最佳组合
+
+**使用方式**：
+```bash
+# 生成信息图表
+/baoyu-infographic 文件.md --layout journey-path --style chalkboard
+
+# 生成小红书图文
+/baoyu-xhs-images 文件.md --style cute --layout dense
+```
+
+**文档位置**：
+- `Obsidian/可视化示例/使用指南.md`（5.8KB）
+- `Obsidian/可视化示例/AI学习路径.md`
+- `Obsidian/可视化示例/AI视频成本对比.md`
+- `Obsidian/可视化示例/OpenClaw七剑.md`
+
+**安装命令**：
+```bash
+npx skills add jimliu/baoyu-skills
+```
+
+---
+
+### 🗡️ OpenClaw 入门七剑（2026-02-27 新增）
+
+**学习时间**：2026-02-27
+
+**来源**：小布记忆
+
+**七大核心命令**：
+
+1. **onboard** - 一键重置配置 ⭐⭐⭐
+   ```bash
+   openclaw onboard
+   ```
+   场景：配置搞乱，想重新开始
+
+2. **config** - 模型配置 ⭐⭐⭐⭐⭐
+   ```bash
+   openclaw config
+   ```
+   场景：更换默认模型
+
+3. **status** - 健康检查 ⭐⭐⭐⭐⭐
+   ```bash
+   openclaw status
+   ```
+   场景：确认服务是否正常
+
+4. **gateway** - 网关管理 ⭐⭐⭐⭐
+   ```bash
+   openclaw gateway start/stop/restart
+   ```
+   场景：管理网关服务
+
+5. **dashboard** - 管理界面 ⭐⭐⭐⭐⭐
+   ```bash
+   openclaw dashboard
+   ```
+   场景：日常高频使用
+
+6. **logs** - 日志查看 ⭐⭐⭐⭐
+   ```bash
+   openclaw logs -f
+   ```
+   场景：问题排查
+
+7. **update** - 一键升级 ⭐⭐⭐⭐
+   ```bash
+   openclaw update
+   ```
+   场景：获取新功能和修复
+
+**文档位置**：
+- `Obsidian/OpenClaw/OpenClaw入门七剑完全指南.md`（5.1KB）
+
+**常见错误解决**：
+- unreachable → 重启网关
+- authentication failed → 检查 API Key
+- connect failed → 检查网络/端口
+
+---
 
 **自动修复记录：**
 - `Obsidian/工作流程/自动修复记录.md`
@@ -38,42 +278,47 @@
 
 **最新学习：2026-02-27**
 
-1. **X & Reddit AI 趋势**（新增）
-   - Gartner 2026 十大技术趋势：AI 仍是核心
-   - AI 商业化加速：企业战略全面 AI 化
-   - 顶级 AI 股票：Microsoft, Apple, Tesla, Palantir, CrowdStrike
-   - Zero-Human Company：全球首个全 AI 自主企业（深入分析）
-   - GPT-5.2 + Codex App 发布
-   - ChatGPT Adult Mode（Q1 2026）
-   - AI 论文发现工具需求
-   - 基准测试泛滥问题
-   - OpenClaw 登上 Product Hunt 热榜
+1. **2024 vs 2026 AI 数据验证**（重要）
+   - 发现 2024 预测严重低估（5 倍差距）
+   - 实际 AI 算力市场：$2.5 万亿（非 500 亿）
+   - AI 基础设施投资：$7000 亿（5 大巨头）
+   - Agentic AI 大规模运营（核心趋势）
+   - AI 奇点已至（2026 年 2 月）
+   - **教训**：数据时效性是决策生命线，必须用最新数据
 
-2. **OpenLink** - 让网页版 AI 访问本地文件系统
-   - GitHub: https://github.com/afumu/openlink
-   - 支持在 ChatGPT/Gemini 中操作本地文件
+2. **老年肥胖诊疗指南**
+   - EASO 最新指南
+   - 三类患者个体化方案
+   - 反对"唯 BMI 论"
+   - 多模式综合干预
 
-3. **Skills.sh** - Agent Skills 生态系统
-   - 发现了 AI 视频生成 Skills
-   - 发现了反向代理配置 Skills
-   - 学会使用 `npx skills find/add`
+3. **OpenClaw 入门七剑**
+   - 7 大核心命令
+   - 从安装到熟练全流程
+   - 常见错误解决方案
 
-4. **自主进化实践**
-   - 实现了主动问题发现
-   - 连接了 Obsidian 知识库
-   - 配置了 EvoMap 社区学习
+4. **Baoyu Skills 集成**
+   - 16 个专业技能
+   - 可视化内容生成
+   - 20 种布局 + 17 种风格
 
-5. **微信公众号代笔**
-   - 学习了爆款文章写作技巧
-   - 提取了标题、开头、正文模板
-   - 掌握了数字冲击、情绪引导等技巧
+5. **故障排查与自我保护**
+   - 浏览器工具故障分析
+   - AI 卡死原因分析
+   - 建立自我监控机制
+   - 从被动到主动保护
 
 **学习笔记位置：**
-- `Obsidian/学习记录/2026-02-27-X-Reddit学习.md`（新增）
-- `Obsidian/学习记录/2026-02-27-自主学习.md`
-- `Obsidian/学习记录/2026-02-27-代笔学习.md`
-- `Obsidian/OpenClaw/OpenClaw Reddit 社区用法汇总.md`（新增）
-- `Obsidian/技术趋势/Zero-Human Company - 20260227.md`（新增）
+- `Obsidian/AI趋势/2024vs2026-AI数据验证报告.md`（重要）
+- `Obsidian/技术趋势/老年肥胖诊疗指南.md`
+- `Obsidian/OpenClaw/OpenClaw入门七剑完全指南.md`
+- `Obsidian/Baoyu-Skills使用指南.md`
+- `Obsidian/故障排查/自我监控与保护机制.md`
+- `Obsidian/故障排查/浏览器工具故障排查-20260227.md`
+- `Obsidian/故障排查/AI卡死故障-20260227.md`
+- `Obsidian/系统设计/Obsidian每日自动整理系统.md`
+- `Obsidian/可视化示例/使用指南.md`
+- `memory/2026-02-27-evening.md` - 晚间总结（故障排查 + 自我保护）
 
 ---
 
