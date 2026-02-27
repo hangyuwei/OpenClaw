@@ -12,3 +12,4 @@
 */5 * * * * cd /home/ubuntu/.openclaw/workspace/obsidian-vault && git add -A && git commit -m "🔄 Auto sync: $(date '+\%Y-\%m-\%d \%H:\%M:\%S')" && git push >> /tmp/obsidian-sync.log 2>&1
 0 9 * * * /home/ubuntu/.openclaw/workspace/scripts/ai-health-blockchain-monitor.sh >> /tmp/ai-health-blockchain.log 2>&1
 0 9 * * * /home/ubuntu/.openclaw/workspace/scripts/ai-health-ecosystem-monitor.sh >> /tmp/ai-health-ecosystem.log 2>&1
+0 9 * * * /home/ubuntu/.openclaw/workspace/scripts/ai-video-monitor.sh >> /tmp/ai-video-monitor.log 2>&1
