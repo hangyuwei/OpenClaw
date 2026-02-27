@@ -1,0 +1,20 @@
+{
+  "wecom": {
+    "corp_id": "your_corp_id_here",
+    "agent_id": "your_agent_id_here",
+    "secret": "your_secret_here",
+    "user_id": "your_user_id_here",
+    "access_token_cache": "/tmp/wecom_token.json"
+  },
+  "sync_settings": {
+    "sync_frequency": "every_hour",
+    "days_ahead": 7,
+    "reminder_minutes": [30, 15, 5],
+    "enable_voice": false
+  },
+  "output": {
+    "obsidian_path": "~/.openclaw/workspace/obsidian-vault/日程",
+    "generate_daily_note": true,
+    "sync_to_git": true
+  }
+}

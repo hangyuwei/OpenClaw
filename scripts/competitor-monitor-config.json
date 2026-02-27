@@ -1,0 +1,50 @@
+{
+  "competitor_monitor": {
+    "enabled": true,
+    "schedule": "0 8 * * *",
+    "timezone": "Asia/Shanghai",
+    "channels": [
+      "Lex Fridman Podcast",
+      "The Knowledge Project",
+      "Acquired",
+      "All-In Podcast",
+      "My First Million"
+    ],
+    "podcast_topics": [
+      "AI trends 2026",
+      "artificial intelligence podcast",
+      "technology trends",
+      "startup growth",
+      "business strategy"
+    ],
+    "output": {
+      "directory": "竞品监控",
+      "format": "markdown",
+      "sync_to_obsidian": true,
+      "notify_on_telegram": false
+    }
+  },
+  "keywords": {
+    "track_keywords": [
+      "AI",
+      "artificial intelligence",
+      "machine learning",
+      "startup",
+      "growth"
+    ],
+    "exclude_keywords": [
+      "music",
+      "gaming"
+    ]
+  },
+  "notifications": {
+    "telegram": {
+      "enabled": false,
+      "chat_id": ""
+    },
+    "email": {
+      "enabled": false,
+      "to": ""
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# OpenClaw 定时任务配置
+# 格式：分 时 日 月 周 命令
+
+# 每天早上 8:00 运行竞品监控
+0 8 * * * /home/ubuntu/.openclaw/workspace/scripts/competitor-monitor.sh >> /tmp/competitor-monitor.log 2>&1
+
+# 每 6 小时技术趋势学习
+0 */6 * * * /home/ubuntu/.openclaw/workspace/scripts/tech-trends.sh >> /tmp/tech-trends.log 2>&1
+
+# 每小时系统健康检查
+0 * * * * /home/ubuntu/.openclaw/workspace/scripts/health-check.sh >> /tmp/health-check.log 2>&1
+
+# 每天 9:00 GitHub 监控
+0 9 * * * /home/ubuntu/.openclaw/workspace/scripts/github-monitor.sh >> /tmp/github-monitor.log 2>&1
+
+# 每 5 分钟 Obsidian 同步
+*/5 * * * * cd /home/ubuntu/.openclaw/workspace/obsidian-vault && git add -A && git commit -m "🔄 Auto sync: $(date '+\%Y-\%m-\%d \%H:\%M:\%S')" && git push >> /tmp/obsidian-sync.log 2>&1

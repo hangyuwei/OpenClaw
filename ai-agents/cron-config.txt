@@ -1,0 +1,13 @@
+# Zero-Human Company 定时任务
+# 运营经理：每 30 分钟
+*/30 * * * * /home/ubuntu/.openclaw/workspace/ai-agents/tamara-operations.sh >> /tmp/tamara.log 2>&1
+
+# 竞品分析：每天 8:00
+0 8 * * * /home/ubuntu/.openclaw/workspace/ai-agents/analyst-competitor.sh >> /tmp/analyst.log 2>&1
+
+# 技术学习：每 6 小时
+0 */6 * * * /home/ubuntu/.openclaw/workspace/ai-agents/learner-trends.sh >> /tmp/learner.log 2>&1
+
+# Obsidian 同步：每 5 分钟
+*/5 * * * * cd /home/ubuntu/.openclaw/workspace/obsidian-vault && git add -A && git commit -m "🔄 Auto sync: $(date '+\%Y-\%m-\%d \%H:\%M:\%S')" && git push >> /tmp/obsidian-sync.log 2>&1
+0 9 * * * /home/ubuntu/.openclaw/workspace/scripts/ai-health-blockchain-monitor.sh >> /tmp/ai-health-blockchain.log 2>&1

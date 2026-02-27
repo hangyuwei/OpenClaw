@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 100 AI 博主 - 快速关注</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .category-title {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .influencers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .influencer-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .influencer-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+        .influencer-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .influencer-handle {
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .influencer-stats {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .influencer-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .topic-tag {
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+        .follow-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+        }
+        .follow-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #667eea;
+            width: 0%;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+        .actions {
+            position: sticky;
+            top: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .check-all-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .check-all-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+        .checked {
+            opacity: 0.5;
+            border-color: #4CAF50 !important;
+        }
+        .checked::after {
+            content: "✓";
+            color: #4CAF50;
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="container">
+        <h1>🎯 Top 100 AI 博主快速关注</h1>
+        <p class="subtitle">一键关注最有影响力的 AI 领域意见领袖</p>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">AI 博主</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="checkedCount">0</span>
+                <span class="stat-label">已关注</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="remainingCount">100</span>
+                <span class="stat-label">待关注</span>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <div>
+                <span style="font-weight: bold;">进度：<span id="progressText">0/100</span></span>
+            </div>
+            <button class="check-all-btn" onclick="checkAllVisible()">标记所有可见为已关注</button>
+        </div>
+        
+        <!-- Twitter/X 超级大V -->
+        <div class="category">
+            <h2 class="category-title">🔥 Twitter/X 超级大V（1000万+关注）</h2>
+            <div class="influencers">
+                <div class="influencer-card">
+                    <div class="influencer-name">Elon Musk</div>
+                    <span class="influencer-handle">@elonmusk</span>
+                    <div class="influencer-stats">关注者: 150M+</div>
+                    <div class="influencer-topics">
+                        <span class="topic-tag">AI</span>
+                        <span class="topic-tag">SpaceX</span>
+                        <span class="topic-tag">Tesla</span>
+                    </div>
+                    <a href="https://twitter.com/elonmusk" target="_blank" class="follow-btn" onclick="markAsChecked(this)">关注</a>
+                </div>
+                
+                <div class="influencer-card">
+                    <div class="influencer-name">Sam Altman</div>
+                    <span class="influencer-handle">@sama</span>
+                    <div class="influencer-stats">关注者: 5M+</div>
+                    <div class="influencer-topics">
+                        <span class="topic-tag">OpenAI</span>
+                        <span class="topic-tag">AI 趋势</span>
+                    </div>
+                    <a href="https://twitter.com/sama" target="_blank" class="follow-btn" onclick="markAsChecked(this)">关注</a>
+                </div>
+                
+                <div class="influencer-card">
+                    <div class="influencer-name">Bill Gates</div>
+                    <span class="influencer-handle">@BillGates</span>
+                    <div class="influencer-stats">关注者: 60M+</div>
+                    <div class="influencer-topics">
+                        <span class="topic-tag">AI</span>
+                        <span class="topic-tag">科技</span>
+                        <span class="topic-tag">慈善</span>
+                    </div>
+                    <a href="https://twitter.com/BillGates" target="_blank" class="follow-btn" onclick="markAsChecked(this)">关注</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 更多博主... -->
+        <!-- 这里可以继续添加其他博主 -->
+        
+    </div>
+    
+    <script>
+        let checkedCount = 0;
+        const total = 100;
+        
+        function markAsChecked(btn) {
+            const card = btn.closest('.influencer-card');
+            if (!card.classList.contains('checked')) {
+                card.classList.add('checked');
+                checkedCount++;
+                updateProgress();
+            }
+        }
+        
+        function updateProgress() {
+            const percentage = (checkedCount / total) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('checkedCount').textContent = checkedCount;
+            document.getElementById('remainingCount').textContent = total - checkedCount;
+            document.getElementById('progressText').textContent = `${checkedCount}/${total}`;
+        }
+        
+        function checkAllVisible() {
+            const cards = document.querySelectorAll('.influencer-card:not(.checked)');
+            cards.forEach(card => {
+                card.classList.add('checked');
+                checkedCount++;
+            });
+            updateProgress();
+        }
+        
+        // 页面加载时恢复进度
+        window.onload = function() {
+            const saved = localStorage.getItem('checkedCount');
+            if (saved) {
+                checkedCount = parseInt(saved);
+                updateProgress();
+            }
+        }
+        
+        // 保存进度
+        window.onbeforeunload = function() {
+            localStorage.setItem('checkedCount', checkedCount);
+        }
+    </script>
+</body>
+</html>
