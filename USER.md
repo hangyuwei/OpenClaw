@@ -1,12 +1,10 @@
 # USER.md - About Your Human
 
-_Learn about the person you're helping. Update this as you go._
-
-- **Name:**
-- **What to call them:**
+- **Name:** 杭
+- **What to call them:** 杭
 - **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:**
+- **Timezone:** Asia/Shanghai
+- **Notes:** 只能用中文回复
 
 ## Context
 

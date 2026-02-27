@@ -31,6 +31,11 @@ Things like:
 - Default speaker: Kitchen HomePod
 ```
 
+### Search
+
+- **Default search tool:** Tavily（优先使用，数据干净、AI 友好）
+- **Fallback:** web_search（Brave Search）仅在 Tavily 不可用时使用
+
 ## Why Separate?
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.

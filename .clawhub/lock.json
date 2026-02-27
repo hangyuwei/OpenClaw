@@ -16,6 +16,54 @@
     "nano-banana-pro": {
       "version": "1.0.1",
       "installedAt": 1771682327181
+    },
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1771683261547
+    },
+    "twitter": {
+      "version": "1.0.4",
+      "installedAt": 1771688342527
+    },
+    "glass2claw": {
+      "version": "1.5.0",
+      "installedAt": 1771771880251
+    },
+    "sqlite": {
+      "version": "1.0.0",
+      "installedAt": 1771904809685
+    },
+    "pg": {
+      "version": "1.0.0",
+      "installedAt": 1771904811573
+    },
+    "playwright": {
+      "version": "1.0.0",
+      "installedAt": 1771904926780
+    },
+    "figma": {
+      "version": "2.1.0",
+      "installedAt": 1771904929342
+    },
+    "evomap-tools": {
+      "version": "1.0.0",
+      "installedAt": 1772154794344
+    },
+    "evomap-fetch-capsule": {
+      "version": "1.0.0",
+      "installedAt": 1772155912349
+    },
+    "evomap-publish-capsule": {
+      "version": "1.0.1",
+      "installedAt": 1772155916239
+    },
+    "evomap-verify-report": {
+      "version": "1.0.0",
+      "installedAt": 1772155918734
+    },
+    "evomap-check-earnings": {
+      "version": "1.0.0",
+      "installedAt": 1772155921073
     }
   }
 }
