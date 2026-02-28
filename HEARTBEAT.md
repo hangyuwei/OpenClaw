@@ -13,6 +13,7 @@
 | 每 10 分钟 | 系统健康检查 | 自动修复宕机服务 | 异常时通知 |
 | 每天 4:00 | Obsidian 整理 | 分析 + 实际执行优化 | ✅ 通知 |
 | 每天 7:00 | AI 学习监控 | 监控最新 AI/ML | ✅ 通知 |
+| **每天 8:00** | **健康公众号监控** | **监控 10 个健康医疗公众号** | **✅ 通知** |
 | 每天 9:00 | AI 视频监控 | 成本分析 + ROI | ✅ 通知 |
 | 每天 9:00 | AI 健康区块链 | 行业动态 | ✅ 通知 |
 | 每天 9:00 | AI 大健康生态 | 老龄化 + AI 医疗 | ✅ 通知 |
@@ -52,6 +53,7 @@
 
 - `/tmp/notify/obsidian-refine.txt` - Obsidian 整理
 - `/tmp/notify/ai-learning-monitor.txt` - AI 学习监控
+- `/tmp/notify/health-accounts-monitor.txt` - 健康公众号监控
 - `/tmp/notify/ai-video-monitor.txt` - AI 视频监控
 - `/tmp/notify/ai-health-blockchain.txt` - AI 健康区块链
 - `/tmp/notify/ai-health-ecosystem.txt` - AI 大健康生态
