@@ -61,15 +61,15 @@ for account in "${ACCOUNTS[@]}"; do
 
 EOF
 
-  # 搜索该公众号的最新文章（搜索微信公众号平台）
+  # 搜索该公众号的最新文章（使用更宽泛的搜索）
   result=$(node ~/.openclaw/workspace/skills/tavily-search/scripts/search.mjs \
-    "site:mp.weixin.qq.com \"$account\" 2026" \
+    "\"$account\" 微信公众号 2026" \
     -n 5 \
     --topic news \
     --days 7 2>&1)
 
   # 解析结果
-  article_count=$(echo "$result" | grep -c "\"url\"" || echo "0")
+  article_count=$(echo "$result" | grep -o "\"url\"" | wc -l)
 
   if [ "$article_count" -gt 0 ]; then
     echo "$result" | grep -A 3 "\"title\"" | head -20 >> "$REPORT_FILE"
