@@ -345,6 +345,30 @@ commit_changes() {
   fi
 }
 
+# 10. 生成通知摘要
+generate_notification() {
+  log "生成通知摘要..."
+
+  local total_files=$(find "$VAULT" -name "*.md" -type f | wc -l)
+  local orphan_count=$(grep -c "^  - " "$REPORT_FILE" 2>/dev/null || echo "0")
+
+  # 创建通知标记文件，供 heartbeat 读取
+  local notify_file="/tmp/obsidian-refine-notify.txt"
+
+  cat > "$notify_file" <<EOF
+🌅 Obsidian 每日整理完成
+
+📊 摘要：
+- 总文件：$total_files 个
+- 孤立文件：$orphan_count 个
+- 临时清理：已完成
+
+📋 报告位置：obsidian-vault/自动整理/日报-$(date +%Y-%m-%d).md
+EOF
+
+  log "通知摘要已生成：$notify_file"
+}
+
 # 主流程
 main() {
   log "========== 开始 Obsidian 自动整理 =========="
@@ -359,6 +383,7 @@ main() {
   cleanup_temp
   generate_recommendations
   commit_changes
+  generate_notification
 
   log "✅ Obsidian 自动整理完成"
   log "报告位置：$REPORT_FILE"
