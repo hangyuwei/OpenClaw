@@ -12,14 +12,16 @@
 |------|------|------|------|
 | 每 10 分钟 | 系统健康检查 | 自动修复宕机服务 | 异常时通知 |
 | 每天 4:00 | Obsidian 整理 | 分析 + 实际执行优化 | ✅ 通知 |
-| 每天 7:00 | AI 学习监控 | 监控最新 AI/ML | ✅ 通知 |
-| **每天 8:00** | **健康公众号监控** | **监控 10 个健康医疗公众号** | **✅ 通知** |
+| 每天 7:00 | AI 学习监控 | **综合学习（合并原 learner-trends）** | ✅ 通知 |
+| 每天 8:00 | 健康公众号监控 | 监控 10 个健康医疗公众号 | ✅ 通知 |
 | 每天 9:00 | AI 视频监控 | 成本分析 + ROI | ✅ 通知 |
 | 每天 9:00 | AI 健康区块链 | 行业动态 | ✅ 通知 |
 | 每天 9:00 | AI 大健康生态 | 老龄化 + AI 医疗 | ✅ 通知 |
 | 每 30 分钟 | Tamara 运营 | 系统状态检查 | 异常时通知 |
-| 每 6 小时 | 深度学习 | AI 趋势 + 技术巨头 | ✅ 通知 |
 | 每 5 分钟 | Obsidian 同步 | Git 自动提交推送 | 无 |
+
+**已删除**：
+- ~~每 2 小时 learner-trends~~（重复，已合并到 7:00）
 
 ---
 
@@ -52,12 +54,11 @@
 ### 通知文件位置
 
 - `/tmp/notify/obsidian-refine.txt` - Obsidian 整理
-- `/tmp/notify/ai-learning-monitor.txt` - AI 学习监控
+- `/tmp/notify/ai-learning-monitor.txt` - AI 学习监控（综合）
 - `/tmp/notify/health-accounts-monitor.txt` - 健康公众号监控
 - `/tmp/notify/ai-video-monitor.txt` - AI 视频监控
 - `/tmp/notify/ai-health-blockchain.txt` - AI 健康区块链
 - `/tmp/notify/ai-health-ecosystem.txt` - AI 大健康生态
-- `/tmp/notify/learner-trends.txt` - 深度学习
 - `/tmp/notify/health-check.txt` - 系统健康（仅异常时）
 
 ---

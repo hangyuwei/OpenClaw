@@ -1,6 +1,6 @@
 #!/bin/bash
-# AI 硬核技术学习资源监控
-# 每天自动抓取最新学习资源
+# AI 硬核技术学习资源监控 v2.0
+# 每天自动抓取最新学习资源 + 增量分析
 
 WORKSPACE="$HOME/.openclaw/workspace"
 OBSIDIAN="$WORKSPACE/obsidian-vault"
@@ -8,14 +8,22 @@ TAVILY_KEY="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"
 DATE=$(date +%Y-%m-%d)
 TIME=$(date +%H:%M:%S)
 
-echo "🎓 AI 硬核技术学习监控 - $DATE $TIME"
+# 昨天的报告
+YESTERDAY=$(date -d "yesterday" +%Y-%m-%d)
+YESTERDAY_REPORT="$OBSIDIAN/学习资源监控/每日报告/$YESTERDAY.md"
+
+echo "🎓 AI 硬核技术学习监控 v2.0 - $DATE $TIME"
 echo "========================================"
+echo "📊 增量分析：对比 $YESTERDAY 的报告"
+echo ""
 
 # 创建输出目录
 mkdir -p "$OBSIDIAN/学习资源监控"
 mkdir -p "$OBSIDIAN/学习资源监控/每日报告"
 
 export TAVILY_API_KEY="$TAVILY_KEY"
+
+REPORT_FILE="$OBSIDIAN/学习资源监控/每日报告/$DATE.md"
 
 # ============================================
 # 第一部分：国内中文社区监控
@@ -424,30 +432,82 @@ $REDDIT_ML
 
 ---
 
-**自动生成**：OpenClaw 学习资源监控
+**自动生成**：OpenClaw 学习资源监控 v2.0
+**增量分析**：对比 $YESTERDAY 的报告
 **下次更新**：明天
 EOF
 
 echo "✅ 学习资源报告已生成：$REPORT_FILE"
 
+# ============================================
+# 增量分析：对比昨天的报告
+# ============================================
+
+echo ""
+echo "📊 增量分析：对比昨天的报告..."
+
+NEW_TOPICS=""
+NEW_COUNT=0
+
+# 如果昨天的报告存在，进行对比
+if [ -f "$YESTERDAY_REPORT" ]; then
+  echo "  找到昨天的报告，进行增量分析..."
+
+  # 提取今天报告中出现但昨天没有的关键词
+  # 简化版：检查是否有新的热门词汇
+  TODAY_KEYWORDS=$(grep -oE '\b[A-Z][a-z]+[A-Z][a-zA-Z]*\b' "$REPORT_FILE" | sort -u)
+  YESTERDAY_KEYWORDS=$(grep -oE '\b[A-Z][a-z]+[A-Z][a-zA-Z]*\b' "$YESTERDAY_REPORT" | sort -u)
+
+  # 找出新出现的关键词
+  for keyword in $TODAY_KEYWORDS; do
+    if ! echo "$YESTERDAY_KEYWORDS" | grep -q "$keyword"; then
+      NEW_COUNT=$((NEW_COUNT + 1))
+      NEW_TOPICS="$NEW_TOPICS\n- $keyword（新出现）"
+    fi
+  done
+
+  if [ $NEW_COUNT -gt 0 ]; then
+    echo ""
+    echo "🆕 发现 $NEW_COUNT 个新话题/技术"
+    echo "  $NEW_TOPICS"
+
+    # 追加到报告
+    echo "" >> "$REPORT_FILE"
+    echo "---" >> "$REPORT_FILE"
+    echo "" >> "$REPORT_FILE"
+    echo "## 🆕 今日新发现（对比昨天）" >> "$REPORT_FILE"
+    echo "" >> "$REPORT_FILE"
+    echo "发现 $NEW_COUNT 个新话题/技术：" >> "$REPORT_FILE"
+    echo -e "$NEW_TOPICS" >> "$REPORT_FILE"
+  else
+    echo "  未发现明显新话题"
+  fi
+else
+  echo "  昨天无报告，跳过增量分析"
+  NEW_TOPICS="首次运行，无对比数据"
+fi
+
 # 同步到 Git
 cd "$OBSIDIAN"
 git add "学习资源监控/每日报告/$DATE.md"
-git commit -m "🎓 AI 硬核技术学习资源 - $DATE"
+git commit -m "🎓 AI 硬核技术学习资源 - $DATE（增量分析）"
 git push
 
 echo "✅ 已同步到 GitHub"
 
-# 生成通知
+# 生成通知（包含增量信息）
 mkdir -p /tmp/notify
 cat > /tmp/notify/ai-learning-monitor.txt <<EOF
 🎓 AI 学习资源监控完成
 
 📊 今日监控：
-- 国内社区：4 个（智源、机器之心、V2EX、掘金）
-- 国际社区：2 个（Hugging Face、GitHub）
-- 学术资源：2 个（arXiv、Papers with Code）
-- 论坛讨论：2 个（Reddit）
+- 国内社区：4 个
+- 国际社区：2 个
+- 学术资源：2 个
+- 论坛讨论：2 个
+
+🆕 增量分析：
+$(if [ $NEW_COUNT -gt 0 ]; then echo "发现 $NEW_COUNT 个新话题/技术"; else echo "未发现明显新话题"; fi)
 
 📋 报告位置：obsidian-vault/学习资源监控/每日报告/$DATE.md
 EOF
@@ -456,11 +516,7 @@ echo ""
 echo "========================================"
 echo "✅ AI 硬核技术学习监控完成！"
 echo ""
-echo "📋 本次监控："
-echo "  - 国内社区：4 个"
-echo "  - 国际社区：2 个"
-echo "  - 学术资源：2 个"
-echo "  - 论坛讨论：2 个"
+echo "📊 增量分析：$(if [ $NEW_COUNT -gt 0 ]; then echo "发现 $NEW_COUNT 个新话题"; else echo "无明显新话题"; fi)"
 echo ""
 echo "📋 查看报告："
 echo "  cat $REPORT_FILE"
