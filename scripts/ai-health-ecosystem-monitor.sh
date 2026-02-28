@@ -94,6 +94,14 @@ git push
 
 echo "✅ 已同步到 GitHub"
 
+# 生成通知
+mkdir -p /tmp/notify
+cat > /tmp/notify/ai-health-ecosystem.txt <<EOF
+🏥 AI+大健康生态监控完成
+
+📋 报告位置：obsidian-vault/技术趋势/AI大健康监控/$DATE.md
+EOF
+
 echo ""
 echo "===================================="
 echo "✅ 监控完成！"

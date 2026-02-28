@@ -617,3 +617,20 @@ echo "  cat $LEARNING_FILE"
 echo "  cat $REFLECTION_FILE"
 echo "  cat $QUESTIONS_FILE"
 echo "  cat $VALIDATION_FILE"
+
+# 生成通知
+mkdir -p /tmp/notify
+cat > /tmp/notify/learner-trends.txt <<EOF
+🧠 深度学习系统完成
+
+📊 本次学习：
+- AI 前沿：10 条
+- 科技巨头：7 家
+- Reddit 话题：10 个
+- X/Twitter：10 条
+- 大健康：8 条
+
+💭 深度反思 + ❓ 深层问题 + ⚠️ 数据验证
+
+📋 报告位置：obsidian-vault/学习记录/
+EOF
