@@ -147,6 +147,29 @@ EOF
   log "健康报告已生成：$report_file"
 }
 
+# 生成通知
+generate_notification() {
+  local available=$(free -m | awk '/Mem:/ {print $7}')
+  local load=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//')
+  local disk=$(df -h / | awk 'NR==2 {print $4}')
+
+  local notify_file="/tmp/notify/health-check.txt"
+  mkdir -p /tmp/notify
+
+  if [ $memory_status -ne 0 ] || [ $disk_status -ne 0 ]; then
+    cat > "$notify_file" <<EOF
+🚨 系统健康检查异常
+
+⚠️ 状态：
+- 内存：${available}MB 可用
+- 负载：$load
+- 磁盘：$disk 可用
+
+请检查系统状态！
+EOF
+  fi
+}
+
 # 主流程
 main() {
   log "========== 开始系统检查 =========="
@@ -169,6 +192,7 @@ main() {
   openclaw_status=$?
 
   generate_report
+  generate_notification
 
   # 如果有严重问题，返回错误码
   if [ $memory_status -ne 0 ] || [ $disk_status -ne 0 ]; then
