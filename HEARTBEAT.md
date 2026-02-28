@@ -37,6 +37,8 @@
 
 3. **定时任务状态** - cron 任务是否正常
 
+4. **守护 Agent 状态** - 检查 guardian.log
+
 ---
 
 ## 通知机制
@@ -59,6 +61,7 @@
 - `/tmp/notify/ai-video-monitor.txt` - AI 视频监控
 - `/tmp/notify/ai-health-blockchain.txt` - AI 健康区块链
 - `/tmp/notify/ai-health-ecosystem.txt` - AI 大健康生态
+- `/tmp/notify/guardian.txt` - **守护 Agent（需要人工干预时）**
 - `/tmp/notify/health-check.txt` - 系统健康（仅异常时）
 
 ---
