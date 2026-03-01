@@ -1,15 +1,20 @@
 {
   "lastChecks": {
-    "system_health": 1740697200,
-    "obsidian_sync": 1740697200,
-    "obsidian_refine": 1738545600,
-    "git_status": 1740697200,
-    "cron_tasks": 1740697200,
-    "ai_learning_monitor": 1740702392
+    "system_health": 1740827057,
+    "obsidian_sync": 1740827057,
+    "obsidian_refine": 1740827057,
+    "git_status": 1740827057,
+    "cron_tasks": 1740827057,
+    "ai_learning_monitor": 1740827057,
+    "ai_video_monitor": 1740827057,
+    "ai_health_blockchain": 1740827057,
+    "ai_health_ecosystem": 1740827057,
+    "health_accounts_monitor": 1740827057
   },
-  "lastCheckTime": "2026-02-28T07:06:32+08:00",
-  "notes": "系统健康正常，AI 学习资源监控已完成（每天 7:00），已生成报告并同步到 Obsidian/GitHub",
+  "lastCheckTime": "2026-03-01T17:04:17+08:00",
+  "notes": "所有定时任务已完成，系统健康正常，无待处理事项",
   "improvements": {
-    "2026-02-28": "添加通知机制：Obsidian 整理完成后主动发送报告，不再等用户来问"
+    "2026-02-28": "添加通知机制：Obsidian 整理完成后主动发送报告，不再等用户来问",
+    "2026-03-01": "清理过时的 guardian 通知，Gateway 运行正常"
   }
 }
