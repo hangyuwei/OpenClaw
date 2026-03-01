@@ -45,8 +45,8 @@ log_success() {
 # ==================== 健康检查 ====================
 
 check_local_gateway() {
-    # 检查本地 Gateway 状态
-    if openclaw gateway status >/dev/null 2>&1; then
+    # 检查本地 Gateway 状态 (检查进程是否存在)
+    if pgrep -f "openclaw-gateway" >/dev/null 2>&1; then
         return 0
     else
         return 1
@@ -64,11 +64,16 @@ check_remote_host() {
 }
 
 check_remote_gateway() {
-    # 通过 SSH 检查远程 Gateway 状态
-    ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no \
-        "${SSH_USER}@${BACKUP_HOST}" \
-        "openclaw gateway status" >/dev/null 2>&1
-    return $?
+    # 通过 SSH 检查远程主机 (仅 ping + SSH 端口)
+    # 注意：需要先配置 SSH 免密登录
+    if ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no \
+        "${SSH_USER}@${BACKUP_HOST}" "echo ok" >/dev/null 2>&1; then
+        return 0
+    else
+        # SSH 未配置时，仅检查端口
+        nc -z -w 2 "$BACKUP_HOST" 22 >/dev/null 2>&1
+        return $?
+    fi
 }
 
 check_internet() {
@@ -188,37 +193,50 @@ failback_to_primary() {
 # ==================== 主循环 ====================
 
 run_check_cycle() {
-    local primary_ok=false
+    local primary_ok=true
     local backup_ok=false
+    local issues=""
     
-    # 检查主服务器
-    if check_local_gateway && check_internet && check_github; then
-        primary_ok=true
-        log_success "主服务器健康"
-    else
-        log_error "主服务器异常"
+    # 检查主服务器 (宽松检查)
+    if ! pgrep -f "openclaw-gateway" >/dev/null 2>&1; then
+        primary_ok=false
+        issues="$issues Gateway 离线;"
     fi
     
-    # 检查备份服务器
-    if check_remote_host "$BACKUP_HOST" && check_remote_gateway; then
-        backup_ok=true
-        log_success "备份服务器健康"
+    if ! curl -s --max-time 5 https://www.baidu.com >/dev/null 2>&1; then
+        issues="$issues 外网异常;"
+    fi
+    
+    if $primary_ok; then
+        log_success "主服务器健康"
     else
-        log_error "备份服务器异常"
+        log_error "主服务器异常:$issues"
+    fi
+    
+    # 检查备份服务器 (仅 ping 检查)
+    if ping -c 1 -W 2 "$BACKUP_HOST" >/dev/null 2>&1; then
+        backup_ok=true
+        log_success "备份服务器在线"
+    else
+        log_error "备份服务器离线"
     fi
     
     # 决策
     if $primary_ok; then
-        if [ "$(jq -r '.status' "$STATE_FILE" 2>/dev/null)" != "primary-active" ]; then
+        # 主服务器正常
+        local last_status=$(jq -r '.status' "$STATE_FILE" 2>/dev/null || echo "")
+        if [ "$last_status" = "backup-active" ]; then
             failback_to_primary
         fi
     elif $backup_ok; then
-        if [ "$(jq -r '.status' "$STATE_FILE" 2>/dev/null)" != "backup-active" ]; then
-            failover_to_backup
-        fi
+        # 主服务器故障，备份可用
+        failover_to_backup
     else
-        send_notification "双机故障" "主服务器和备份服务器都不可用！请立即检查！" "critical"
-        log_error "双机故障！"
+        # 双机故障 (仅当主服务器确实故障时才告警)
+        if [ "$primary_ok" = "false" ]; then
+            send_notification "主服务器故障" "主服务器异常:$issues 备份服务器：$([ "$backup_ok" = "true" ] && echo "在线" || echo "离线")" "critical"
+            log_error "主服务器故障！"
+        fi
     fi
 }
 
