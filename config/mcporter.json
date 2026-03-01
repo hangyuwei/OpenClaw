@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "npx",
+      "args": ["-y", "mcp-obsidian", "/home/ubuntu/.openclaw/workspace/obsidian-vault"],
+      "env": {
+        "OBSIDIAN_API_KEY": "b7d01af9ebb6051cd1c549f864bd7a738aaa1a5a0d8156e89327672978f93250"
+      }
+    }
+  }
+}
